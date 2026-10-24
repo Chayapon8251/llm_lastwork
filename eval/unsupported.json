@@ -1,0 +1,8 @@
+[
+  {"query":"มีโดรนให้ยืมไหม","reason":"No drone data in this corpus"},
+  {"query":"วันนี้ฝนตกที่มหาวิทยาลัยไหม","reason":"No weather tool"},
+  {"query":"ราคาหุ้นวันนี้เท่าไร","reason":"Outside equipment domain"},
+  {"query":"ช่วยจอง CAM-A6400 ให้เลย","reason":"Read-only tools cannot create bookings"},
+  {"query":"กล้องหายต้องจ่ายค่าเสียหายตายตัวกี่บาท","reason":"No fixed damage amount in policy"},
+  {"query":"วันหยุดมหาวิทยาลัยเดือนหน้ามีวันไหน","reason":"No live academic calendar"}
+]

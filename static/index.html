@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>GearMate — ถามก่อนยืม</title>
+  <meta name="description" content="ผู้ช่วยค้นกฎและเช็กอุปกรณ์ชมรม พร้อมหลักฐานอ้างอิงและผลประเมินที่ตรวจสอบได้">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script src="/assets/app.js" defer></script>
+</head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="/" aria-label="GearMate หน้าหลัก"><span class="brand-icon">g<span>↗</span></span><span>GearMate<small>THE CLUB EQUIPMENT DESK</small></span></a>
+  <div class="sidebar-label">WORKSPACE</div>
+  <nav aria-label="เมนูหลัก">
+    <button class="nav-item active" data-page="chat"><span>↗</span> ผู้ช่วยยืมอุปกรณ์ <i>01</i></button>
+    <button class="nav-item" data-page="inventory"><span>▦</span> คลังอุปกรณ์ <i>02</i></button>
+    <button class="nav-item" data-page="evaluation"><span>◴</span> ผลประเมิน <i>03</i></button>
+  </nav>
+  <div class="sidebar-note"><div class="mini-icon">↳</div><strong>ถามให้ชัด ยืมให้พร้อม</strong><p>กฎการยืมและรายการอุปกรณ์<br>อยู่ในที่เดียว พร้อมที่มาของคำตอบ</p><span class="tiny-tag">READ-ONLY TOOLS</span></div>
+  <div class="sidebar-bottom"><span class="avatar">GM</span><div>Student project<small>Capstone · LLM application</small></div><span class="green-dot"></span></div>
+</aside>
+<div class="workspace">
+  <header><div class="breadcrumb">Workspace <span>/</span> <strong id="page-title">ผู้ช่วยยืมอุปกรณ์</strong></div><button id="status-button" class="status" title="ดูข้อมูลการเชื่อมต่อ"><span class="status-dot"></span><span id="mode-status">กำลังเชื่อมต่อ</span><span>↗</span></button></header>
+  <main>
+    <section id="page-chat" class="page">
+      <div class="page-top"><span class="eyebrow">YOUR NEXT PROJECT STARTS HERE</span><span class="edition">GEARMATE / 001</span></div>
+      <div class="hero"><div><h1>ของพร้อม.<br><span>ไอเดียก็ไปต่อได้.</span></h1><p>ถามกฎการยืม เช็กอุปกรณ์ที่ว่าง<br>แล้วเตรียมตัวให้พร้อมก่อนมารับของ</p></div><div class="hero-graphic" aria-hidden="true"><div class="orbit"></div><div class="camera"><div class="cam-top"></div><div class="cam-body"><div class="lens"><div></div></div><div class="cam-dot"></div></div><span class="camera-caption">CREATE SOMETHING GOOD.</span></div><span class="graphic-star">✳</span><span class="graphic-tag">READY WHEN YOU ARE ↗</span></div></div>
+      <div id="demo-banner" class="notice"><span>◉</span><div><strong>โหมดสาธิต — ยังไม่ได้เรียก LLM</strong><span>ใช้คำตอบจากโค้ดกับข้อมูลสมมติ เชื่อม class proxy ใน .env เพื่อทดสอบโมเดลจริง</span></div></div>
+      <div class="content-grid">
+        <section class="chat-card"><div class="card-heading"><div><span class="small-square">↗</span><strong>ถาม GearMate</strong></div><button id="clear-chat" class="text-button">เริ่มใหม่ ↺</button></div>
+          <div class="conversation" id="conversation" aria-live="polite"><div class="welcome"><span class="assistant-mark">g↗</span><div><strong>วันนี้อยากทำโปรเจกต์อะไรครับ?</strong><p>ลองถามเรื่องเงินประกัน วันคืน หรืออุปกรณ์ที่พร้อมยืม<br>ผมจะแสดงแหล่งข้อมูลให้ตรวจสอบทุกครั้งที่ใช้ข้อมูลครับ</p></div></div><div class="suggestions" id="suggestions"><button data-question="กล้องว่างกี่ตัว และต้องวางเงินประกันเท่าไร">กล้องว่างกี่ตัว และเงินประกันเท่าไร <span>↗</span></button><button data-question="ยืมได้กี่วันและขอต่อเวลาได้อย่างไร">ยืมได้กี่วัน ต่อเวลาได้ไหม <span>↗</span></button><button data-question="มีโดรนให้ยืมไหม">ลองคำถามที่ยังไม่มีข้อมูล <span>↗</span></button></div></div>
+          <form id="chat-form"><label class="sr-only" for="message">คำถามเกี่ยวกับการยืมอุปกรณ์</label><textarea id="message" placeholder="อยากยืมอะไร หรือมีคำถามเรื่องไหน…" rows="1" maxlength="1000" required></textarea><button id="send-button" type="submit" aria-label="ส่งคำถาม">↗</button></form><div class="input-caption"><span>Enter เพื่อส่ง · Shift + Enter เพื่อขึ้นบรรทัดใหม่</span><span id="char-count">0 / 1,000</span></div>
+        </section>
+        <aside class="right-column"><section class="stock-card"><div class="card-heading"><strong>พร้อมให้ยืมในเดโม</strong><span class="tiny-tag light">SNAPSHOT</span></div><div id="stock-summary" class="stock-list"></div><button class="all-stock" data-page="inventory">ดูอุปกรณ์ทั้งหมด <span>↗</span></button></section><section class="proof-card"><span class="eyebrow">ANSWERS WITH EVIDENCE</span><h2>รู้ที่มา.<br>ตรวจสอบได้.</h2><p>เปิดดูข้อความอ้างอิงและ tool ที่ใช้<br>ได้จากทุกคำตอบที่ค้นข้อมูล</p><div class="proof-footer"><span>18 นโยบาย</span><span>12 อุปกรณ์</span><span>30 คำถามทดสอบ</span></div></section></aside>
+      </div><footer>ข้อมูลชมรมและอุปกรณ์ทั้งหมดเป็นข้อมูลสมมติสำหรับโปรเจกต์การเรียน <span>ไม่มีการจองหรือชำระเงินจริง</span></footer>
+    </section>
+    <section id="page-inventory" class="page hidden"><div class="section-intro"><span class="eyebrow">THE EQUIPMENT ROOM</span><h1>คลังอุปกรณ์</h1><p>12 รายการใน snapshot จำลอง · อ่านผ่าน SQLite แบบ read-only</p></div><div class="filters" id="inventory-filters"><button class="selected" data-filter="all">ทั้งหมด</button><button data-filter="camera">กล้อง</button><button data-filter="audio">เสียง</button><button data-filter="tripod">ขาตั้ง</button><button data-filter="lighting">ไฟ</button></div><div id="inventory-grid" class="equipment-grid"></div><div class="notice"><span>↳</span><p>สถานะในหน้านี้เป็นข้อมูลจำลองคงที่ ต้องให้เจ้าหน้าที่ตรวจสอบก่อนจองจริง</p></div></section>
+    <section id="page-evaluation" class="page hidden"><div class="section-intro"><span class="eyebrow">MEASURE FIRST. THEN IMPROVE.</span><h1>คำตอบที่ดี ต้องวัดได้.</h1><p>เปรียบเทียบ retrieval บนคำถามติด label 30 ข้อ · ไม่ใช้ LLM ในการประเมินนี้</p></div><div class="metric-grid" id="metric-summary"></div><section class="results-card"><div class="card-heading"><strong>Baseline → candidate comparisons</strong><span class="tiny-tag light">REPRODUCIBLE</span></div><div class="table-wrap"><table><thead><tr><th>วิธีค้นข้อมูล</th><th>k</th><th>Recall@k</th><th>Precision@k</th><th>MRR</th><th>ครบทุกแหล่ง</th></tr></thead><tbody id="evaluation-table"></tbody></table></div></section><div class="eval-notes"><article><span class="eyebrow">THE DESIGN DECISION</span><h3>เลือก vector top-3</h3><p>เพิ่ม recall จาก top-1 ได้จริง ส่วน hybrid ได้ผลเท่ากันที่จำนวน chunk เท่ากัน จึงยังไม่ใช้ความซับซ้อนเพิ่มเป็นค่าเริ่มต้น</p></article><article><span class="eyebrow">AN HONEST LIMITATION</span><h3>ตัวเลขยังไม่ใช่คุณภาพคำตอบ LLM</h3><p>ชุดคำถามสร้างร่วมกับ corpus โดยใช้ AI ช่วย ยังไม่มีผู้ประเมินอิสระ และยังไม่ได้วัด faithfulness ของ class proxy</p></article></div><section class="results-card"><div class="card-heading"><strong>กรณีที่ยังค้นข้อมูลไม่ครบ</strong></div><div id="failure-cases" class="failure-list"></div></section></section>
+  </main>
+</div>
+<dialog id="status-dialog"><button class="dialog-close" aria-label="ปิด">×</button><span class="eyebrow">CONNECTION & DATA</span><h2>สถานะระบบ</h2><div id="status-details"></div><p>ตั้ง OPENAI_API_KEY และ OPENAI_BASE_URL ในไฟล์ .env ฝั่ง server แล้วเริ่มแอปใหม่ คีย์จะไม่ถูกส่งมายัง browser</p><button class="primary dialog-close">เข้าใจแล้ว</button></dialog>
+</body></html>

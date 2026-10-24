@@ -72,7 +72,7 @@ class Retriever:
             bm25[doc["id"]] = score
         return cosine, bm25
 
-    def search(self, query: str, top_k=3, method="hybrid", min_score=0.04):
+    def search(self, query: str, top_k=3, method="vector", min_score=0.04):
         cosine, bm25 = self.rankings(query)
         vector_rank = sorted((d for d in cosine if cosine[d] > 0), key=cosine.get, reverse=True)
         bm25_rank = sorted((d for d in bm25 if bm25[d] > 0), key=bm25.get, reverse=True)

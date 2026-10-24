@@ -1,6 +1,7 @@
 """Read-only SQLite snapshot with bound values; model cannot submit raw SQL."""
 import json
 import sqlite3
+from contextlib import closing
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -27,6 +28,6 @@ def query_inventory(category=None, code=None, status=None):
     if conditions:
         sql += " WHERE " + " AND ".join(conditions)
     sql += " ORDER BY category, code, id LIMIT 30"
-    with connect() as db:
+    with closing(connect()) as db:
         rows = [dict(row) for row in db.execute(sql, params)]
     return {"source_id": "inventory", "source": "data/inventory.json", "snapshot": "synthetic-fixed-v1", "items": rows, "count": len(rows), "sql": sql, "parameters": params}

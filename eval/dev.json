@@ -1,0 +1,8 @@
+[
+  {"query":"สมัครยืมของชมรมต้องใช้อะไร","relevant":["membership"]},
+  {"query":"Can I renew a loan?","relevant":["extension"]},
+  {"query":"กล้อง canon วางเงินประกันไหม","relevant":["camera_deposit"]},
+  {"query":"borrower needs own SD storage card","relevant":["camera_kit"]},
+  {"query":"ห้องรับอุปกรณ์ทำการเวลาอะไร","relevant":["pickup_hours"]},
+  {"query":"คำถามนี้ไม่มีข้อมูลเกี่ยวกับดวงจันทร์","relevant":[]}
+]

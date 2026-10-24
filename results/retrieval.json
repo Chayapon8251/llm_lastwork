@@ -1,0 +1,2175 @@
+{
+  "benchmark": "GearMate curated lexical retrieval v1",
+  "n": 30,
+  "llm_evaluated": false,
+  "config": {
+    "vector": "character-trigram TF-IDF, not neural embeddings",
+    "rrf_k": 60,
+    "cosine_floor": 0.04,
+    "candidate_limit_per_retriever": 10
+  },
+  "hashes": {
+    "data/policies.json": "0f68074f4cb1844e0a7e752a03e93f98d3a66b655ae223b1e2f21a66d8c60690",
+    "eval/test.json": "3c08487046f99c6437d7f8345cb408e98a0725181a344fae69b81992a8c38272",
+    "app/retrieval.py": "59c6850d9c3142c4ea74576ec3a3dbaf0d7fc5dedd786a815b900c8305b4a8ca"
+  },
+  "systems": [
+    {
+      "system": "vector_top1",
+      "cutoff": 1,
+      "recall": 0.8,
+      "precision": 1.0,
+      "mrr": 1.0,
+      "complete": 0.6,
+      "groups": {
+        "exact_code": {
+          "n": 6,
+          "recall": 1.0,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        "multi": {
+          "n": 12,
+          "recall": 0.5,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 0.0
+        },
+        "thai": {
+          "n": 12,
+          "recall": 1.0,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 1.0
+        }
+      },
+      "details": [
+        {
+          "id": "t01",
+          "query": "สมาชิกหนึ่งคนยืมได้พร้อมกันกี่รายการ",
+          "relevant": [
+            "membership"
+          ],
+          "group": "thai",
+          "ranked": [
+            "membership"
+          ],
+          "recall": 1.0,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t02",
+          "query": "ยืมอุปกรณ์ได้กี่วันปฏิทิน",
+          "relevant": [
+            "duration"
+          ],
+          "group": "thai",
+          "ranked": [
+            "duration"
+          ],
+          "recall": 1.0,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t03",
+          "query": "CAM-A6400 ต้องวางเงินประกันเท่าไร",
+          "relevant": [
+            "camera_deposit"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "camera_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t04",
+          "query": "MIC-WL เงินประกันกี่บาท",
+          "relevant": [
+            "audio_deposit"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "audio_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t05",
+          "query": "คืนช้าคิดค่าปรับต่อวันและมีเพดานเท่าไร",
+          "relevant": [
+            "late_fee"
+          ],
+          "group": "thai",
+          "ranked": [
+            "late_fee"
+          ],
+          "recall": 1.0,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t06",
+          "query": "จองอุปกรณ์ล่วงหน้าขั้นต่ำกี่ชั่วโมง",
+          "relevant": [
+            "reservation"
+          ],
+          "group": "thai",
+          "ranked": [
+            "reservation"
+          ],
+          "recall": 1.0,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t07",
+          "query": "ห้อง GM-201 เปิดถึงกี่โมงและอยู่ไหน",
+          "relevant": [
+            "pickup_hours"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "pickup_hours"
+          ],
+          "recall": 1.0,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t08",
+          "query": "ถ้าวันคืนตรงวันอาทิตย์ต้องทำอย่างไร",
+          "relevant": [
+            "weekend_return"
+          ],
+          "group": "thai",
+          "ranked": [
+            "weekend_return"
+          ],
+          "recall": 1.0,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t09",
+          "query": "ต่อเวลายืมได้กี่ครั้งและแจ้งก่อนกี่ชั่วโมง",
+          "relevant": [
+            "extension"
+          ],
+          "group": "thai",
+          "ranked": [
+            "extension"
+          ],
+          "recall": 1.0,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t10",
+          "query": "ทำกล้องตกเสียหายซ่อมเองได้ไหม",
+          "relevant": [
+            "damage"
+          ],
+          "group": "thai",
+          "ranked": [
+            "damage"
+          ],
+          "recall": 1.0,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t11",
+          "query": "ไม่มารับของสองครั้งโดนพักสิทธิ์กี่วัน",
+          "relevant": [
+            "cancellation"
+          ],
+          "group": "thai",
+          "ranked": [
+            "cancellation"
+          ],
+          "recall": 1.0,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t12",
+          "query": "ยืมกล้องครั้งแรกต้องผ่านอบรมไหม",
+          "relevant": [
+            "training"
+          ],
+          "group": "thai",
+          "ranked": [
+            "training"
+          ],
+          "recall": 1.0,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t13",
+          "query": "ในชุดกล้องมี SD card ให้หรือเปล่า",
+          "relevant": [
+            "camera_kit"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "camera_kit"
+          ],
+          "recall": 1.0,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t14",
+          "query": "นำอุปกรณ์ไปใช้ถ่ายงานต่างประเทศได้ไหม",
+          "relevant": [
+            "outdoor"
+          ],
+          "group": "thai",
+          "ranked": [
+            "outdoor"
+          ],
+          "recall": 1.0,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t15",
+          "query": "ไฟล์ที่ลืมลบหลังคืนอุปกรณ์จะถูกเก็บกี่วัน",
+          "relevant": [
+            "privacy"
+          ],
+          "group": "thai",
+          "ranked": [
+            "privacy"
+          ],
+          "recall": 1.0,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t16",
+          "query": "ยังค้างค่าปรับจะยืมรายการใหม่ได้ไหม",
+          "relevant": [
+            "overdue_block"
+          ],
+          "group": "thai",
+          "ranked": [
+            "overdue_block"
+          ],
+          "recall": 1.0,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t17",
+          "query": "maintenance ในหน้าคลังหมายถึงอะไร",
+          "relevant": [
+            "availability"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "availability"
+          ],
+          "recall": 1.0,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t18",
+          "query": "LED-L60 deposit amount",
+          "relevant": [
+            "lighting_deposit"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "lighting_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t19",
+          "query": "ขอทราบเงินประกันของ CAM-R50 กับ MIC-WL",
+          "relevant": [
+            "camera_deposit",
+            "audio_deposit"
+          ],
+          "group": "multi",
+          "ranked": [
+            "camera_deposit"
+          ],
+          "recall": 0.5,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 0.0
+        },
+        {
+          "id": "t20",
+          "query": "ต้องเป็นสมาชิกและอบรมก่อนยืมกล้องหรือไม่",
+          "relevant": [
+            "membership",
+            "training"
+          ],
+          "group": "multi",
+          "ranked": [
+            "training"
+          ],
+          "recall": 0.5,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 0.0
+        },
+        {
+          "id": "t21",
+          "query": "ยืมได้กี่วันและขอต่อเวลาได้อย่างไร",
+          "relevant": [
+            "duration",
+            "extension"
+          ],
+          "group": "multi",
+          "ranked": [
+            "extension"
+          ],
+          "recall": 0.5,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 0.0
+        },
+        {
+          "id": "t22",
+          "query": "ค่าปรับคืนช้าเท่าไร และถ้ายังค้างค่าปรับยืมใหม่ได้ไหม",
+          "relevant": [
+            "late_fee",
+            "overdue_block"
+          ],
+          "group": "multi",
+          "ranked": [
+            "overdue_block"
+          ],
+          "recall": 0.5,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 0.0
+        },
+        {
+          "id": "t23",
+          "query": "จองล่วงหน้ากี่ชั่วโมงและยกเลิกก่อนรับกี่ชั่วโมง",
+          "relevant": [
+            "reservation",
+            "cancellation"
+          ],
+          "group": "multi",
+          "ranked": [
+            "cancellation"
+          ],
+          "recall": 0.5,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 0.0
+        },
+        {
+          "id": "t24",
+          "query": "วันคืนตรงวันเสาร์ ห้องอุปกรณ์เปิดวันไหนกี่โมง",
+          "relevant": [
+            "weekend_return",
+            "pickup_hours"
+          ],
+          "group": "multi",
+          "ranked": [
+            "weekend_return"
+          ],
+          "recall": 0.5,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 0.0
+        },
+        {
+          "id": "t25",
+          "query": "Can I use the camera in rain and repair it myself if damaged?",
+          "relevant": [
+            "outdoor",
+            "damage"
+          ],
+          "group": "multi",
+          "ranked": [
+            "damage"
+          ],
+          "recall": 0.5,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 0.0
+        },
+        {
+          "id": "t26",
+          "query": "Does the camera kit include a memory card and should I delete my files?",
+          "relevant": [
+            "camera_kit",
+            "privacy"
+          ],
+          "group": "multi",
+          "ranked": [
+            "camera_kit"
+          ],
+          "recall": 0.5,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 0.0
+        },
+        {
+          "id": "t27",
+          "query": "camera deposit and first use training requirements",
+          "relevant": [
+            "camera_deposit",
+            "training"
+          ],
+          "group": "multi",
+          "ranked": [
+            "training"
+          ],
+          "recall": 0.5,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 0.0
+        },
+        {
+          "id": "t28",
+          "query": "studio light LED-L60 deposit and training",
+          "relevant": [
+            "lighting_deposit",
+            "training"
+          ],
+          "group": "multi",
+          "ranked": [
+            "lighting_deposit"
+          ],
+          "recall": 0.5,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 0.0
+        },
+        {
+          "id": "t29",
+          "query": "Where is pickup and is delivery offered? How far ahead must I reserve?",
+          "relevant": [
+            "pickup_hours",
+            "reservation"
+          ],
+          "group": "multi",
+          "ranked": [
+            "reservation"
+          ],
+          "recall": 0.5,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 0.0
+        },
+        {
+          "id": "t30",
+          "query": "What is the standard loan period and the overdue daily fee cap?",
+          "relevant": [
+            "duration",
+            "late_fee"
+          ],
+          "group": "multi",
+          "ranked": [
+            "duration"
+          ],
+          "recall": 0.5,
+          "precision": 1.0,
+          "mrr": 1.0,
+          "complete": 0.0
+        }
+      ]
+    },
+    {
+      "system": "vector_top3",
+      "cutoff": 3,
+      "recall": 0.9833,
+      "precision": 0.4556,
+      "mrr": 1.0,
+      "complete": 0.9667,
+      "groups": {
+        "exact_code": {
+          "n": 6,
+          "recall": 1.0,
+          "precision": 0.3333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        "multi": {
+          "n": 12,
+          "recall": 0.9583,
+          "precision": 0.6389,
+          "mrr": 1.0,
+          "complete": 0.9167
+        },
+        "thai": {
+          "n": 12,
+          "recall": 1.0,
+          "precision": 0.3333,
+          "mrr": 1.0,
+          "complete": 1.0
+        }
+      },
+      "details": [
+        {
+          "id": "t01",
+          "query": "สมาชิกหนึ่งคนยืมได้พร้อมกันกี่รายการ",
+          "relevant": [
+            "membership"
+          ],
+          "group": "thai",
+          "ranked": [
+            "membership",
+            "camera_kit",
+            "overdue_block"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t02",
+          "query": "ยืมอุปกรณ์ได้กี่วันปฏิทิน",
+          "relevant": [
+            "duration"
+          ],
+          "group": "thai",
+          "ranked": [
+            "duration",
+            "membership",
+            "outdoor"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t03",
+          "query": "CAM-A6400 ต้องวางเงินประกันเท่าไร",
+          "relevant": [
+            "camera_deposit"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "camera_deposit",
+            "audio_deposit",
+            "lighting_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t04",
+          "query": "MIC-WL เงินประกันกี่บาท",
+          "relevant": [
+            "audio_deposit"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "audio_deposit",
+            "camera_deposit",
+            "lighting_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t05",
+          "query": "คืนช้าคิดค่าปรับต่อวันและมีเพดานเท่าไร",
+          "relevant": [
+            "late_fee"
+          ],
+          "group": "thai",
+          "ranked": [
+            "late_fee",
+            "weekend_return",
+            "overdue_block"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t06",
+          "query": "จองอุปกรณ์ล่วงหน้าขั้นต่ำกี่ชั่วโมง",
+          "relevant": [
+            "reservation"
+          ],
+          "group": "thai",
+          "ranked": [
+            "reservation",
+            "extension",
+            "cancellation"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t07",
+          "query": "ห้อง GM-201 เปิดถึงกี่โมงและอยู่ไหน",
+          "relevant": [
+            "pickup_hours"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "pickup_hours",
+            "availability"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t08",
+          "query": "ถ้าวันคืนตรงวันอาทิตย์ต้องทำอย่างไร",
+          "relevant": [
+            "weekend_return"
+          ],
+          "group": "thai",
+          "ranked": [
+            "weekend_return",
+            "pickup_hours",
+            "reservation"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t09",
+          "query": "ต่อเวลายืมได้กี่ครั้งและแจ้งก่อนกี่ชั่วโมง",
+          "relevant": [
+            "extension"
+          ],
+          "group": "thai",
+          "ranked": [
+            "extension",
+            "cancellation",
+            "duration"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t10",
+          "query": "ทำกล้องตกเสียหายซ่อมเองได้ไหม",
+          "relevant": [
+            "damage"
+          ],
+          "group": "thai",
+          "ranked": [
+            "damage",
+            "audio_deposit",
+            "camera_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t11",
+          "query": "ไม่มารับของสองครั้งโดนพักสิทธิ์กี่วัน",
+          "relevant": [
+            "cancellation"
+          ],
+          "group": "thai",
+          "ranked": [
+            "cancellation",
+            "overdue_block",
+            "membership"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t12",
+          "query": "ยืมกล้องครั้งแรกต้องผ่านอบรมไหม",
+          "relevant": [
+            "training"
+          ],
+          "group": "thai",
+          "ranked": [
+            "training",
+            "lighting_deposit",
+            "camera_kit"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t13",
+          "query": "ในชุดกล้องมี SD card ให้หรือเปล่า",
+          "relevant": [
+            "camera_kit"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "camera_kit",
+            "camera_deposit",
+            "damage"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t14",
+          "query": "นำอุปกรณ์ไปใช้ถ่ายงานต่างประเทศได้ไหม",
+          "relevant": [
+            "outdoor"
+          ],
+          "group": "thai",
+          "ranked": [
+            "outdoor",
+            "damage",
+            "membership"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t15",
+          "query": "ไฟล์ที่ลืมลบหลังคืนอุปกรณ์จะถูกเก็บกี่วัน",
+          "relevant": [
+            "privacy"
+          ],
+          "group": "thai",
+          "ranked": [
+            "privacy",
+            "pickup_hours",
+            "cancellation"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t16",
+          "query": "ยังค้างค่าปรับจะยืมรายการใหม่ได้ไหม",
+          "relevant": [
+            "overdue_block"
+          ],
+          "group": "thai",
+          "ranked": [
+            "overdue_block",
+            "late_fee",
+            "membership"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t17",
+          "query": "maintenance ในหน้าคลังหมายถึงอะไร",
+          "relevant": [
+            "availability"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "availability",
+            "cancellation",
+            "outdoor"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t18",
+          "query": "LED-L60 deposit amount",
+          "relevant": [
+            "lighting_deposit"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "lighting_deposit",
+            "audio_deposit",
+            "camera_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t19",
+          "query": "ขอทราบเงินประกันของ CAM-R50 กับ MIC-WL",
+          "relevant": [
+            "camera_deposit",
+            "audio_deposit"
+          ],
+          "group": "multi",
+          "ranked": [
+            "camera_deposit",
+            "audio_deposit",
+            "lighting_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t20",
+          "query": "ต้องเป็นสมาชิกและอบรมก่อนยืมกล้องหรือไม่",
+          "relevant": [
+            "membership",
+            "training"
+          ],
+          "group": "multi",
+          "ranked": [
+            "training",
+            "membership",
+            "lighting_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t21",
+          "query": "ยืมได้กี่วันและขอต่อเวลาได้อย่างไร",
+          "relevant": [
+            "duration",
+            "extension"
+          ],
+          "group": "multi",
+          "ranked": [
+            "extension",
+            "duration",
+            "cancellation"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t22",
+          "query": "ค่าปรับคืนช้าเท่าไร และถ้ายังค้างค่าปรับยืมใหม่ได้ไหม",
+          "relevant": [
+            "late_fee",
+            "overdue_block"
+          ],
+          "group": "multi",
+          "ranked": [
+            "overdue_block",
+            "late_fee",
+            "weekend_return"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t23",
+          "query": "จองล่วงหน้ากี่ชั่วโมงและยกเลิกก่อนรับกี่ชั่วโมง",
+          "relevant": [
+            "reservation",
+            "cancellation"
+          ],
+          "group": "multi",
+          "ranked": [
+            "cancellation",
+            "reservation",
+            "extension"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t24",
+          "query": "วันคืนตรงวันเสาร์ ห้องอุปกรณ์เปิดวันไหนกี่โมง",
+          "relevant": [
+            "weekend_return",
+            "pickup_hours"
+          ],
+          "group": "multi",
+          "ranked": [
+            "weekend_return",
+            "pickup_hours",
+            "duration"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t25",
+          "query": "Can I use the camera in rain and repair it myself if damaged?",
+          "relevant": [
+            "outdoor",
+            "damage"
+          ],
+          "group": "multi",
+          "ranked": [
+            "damage",
+            "outdoor",
+            "camera_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t26",
+          "query": "Does the camera kit include a memory card and should I delete my files?",
+          "relevant": [
+            "camera_kit",
+            "privacy"
+          ],
+          "group": "multi",
+          "ranked": [
+            "camera_kit",
+            "training",
+            "privacy"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t27",
+          "query": "camera deposit and first use training requirements",
+          "relevant": [
+            "camera_deposit",
+            "training"
+          ],
+          "group": "multi",
+          "ranked": [
+            "training",
+            "lighting_deposit",
+            "audio_deposit"
+          ],
+          "recall": 0.5,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 0.0
+        },
+        {
+          "id": "t28",
+          "query": "studio light LED-L60 deposit and training",
+          "relevant": [
+            "lighting_deposit",
+            "training"
+          ],
+          "group": "multi",
+          "ranked": [
+            "lighting_deposit",
+            "training",
+            "audio_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t29",
+          "query": "Where is pickup and is delivery offered? How far ahead must I reserve?",
+          "relevant": [
+            "pickup_hours",
+            "reservation"
+          ],
+          "group": "multi",
+          "ranked": [
+            "reservation",
+            "pickup_hours",
+            "extension"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t30",
+          "query": "What is the standard loan period and the overdue daily fee cap?",
+          "relevant": [
+            "duration",
+            "late_fee"
+          ],
+          "group": "multi",
+          "ranked": [
+            "duration",
+            "late_fee",
+            "overdue_block"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        }
+      ]
+    },
+    {
+      "system": "bm25_top3",
+      "cutoff": 3,
+      "recall": 0.9667,
+      "precision": 0.4444,
+      "mrr": 0.9833,
+      "complete": 0.9333,
+      "groups": {
+        "exact_code": {
+          "n": 6,
+          "recall": 1.0,
+          "precision": 0.3333,
+          "mrr": 0.9167,
+          "complete": 1.0
+        },
+        "multi": {
+          "n": 12,
+          "recall": 0.9167,
+          "precision": 0.6111,
+          "mrr": 1.0,
+          "complete": 0.8333
+        },
+        "thai": {
+          "n": 12,
+          "recall": 1.0,
+          "precision": 0.3333,
+          "mrr": 1.0,
+          "complete": 1.0
+        }
+      },
+      "details": [
+        {
+          "id": "t01",
+          "query": "สมาชิกหนึ่งคนยืมได้พร้อมกันกี่รายการ",
+          "relevant": [
+            "membership"
+          ],
+          "group": "thai",
+          "ranked": [
+            "membership",
+            "camera_kit",
+            "overdue_block"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t02",
+          "query": "ยืมอุปกรณ์ได้กี่วันปฏิทิน",
+          "relevant": [
+            "duration"
+          ],
+          "group": "thai",
+          "ranked": [
+            "duration",
+            "membership",
+            "outdoor"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t03",
+          "query": "CAM-A6400 ต้องวางเงินประกันเท่าไร",
+          "relevant": [
+            "camera_deposit"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "camera_deposit",
+            "audio_deposit",
+            "lighting_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t04",
+          "query": "MIC-WL เงินประกันกี่บาท",
+          "relevant": [
+            "audio_deposit"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "audio_deposit",
+            "camera_deposit",
+            "lighting_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t05",
+          "query": "คืนช้าคิดค่าปรับต่อวันและมีเพดานเท่าไร",
+          "relevant": [
+            "late_fee"
+          ],
+          "group": "thai",
+          "ranked": [
+            "late_fee",
+            "weekend_return",
+            "camera_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t06",
+          "query": "จองอุปกรณ์ล่วงหน้าขั้นต่ำกี่ชั่วโมง",
+          "relevant": [
+            "reservation"
+          ],
+          "group": "thai",
+          "ranked": [
+            "reservation",
+            "extension",
+            "cancellation"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t07",
+          "query": "ห้อง GM-201 เปิดถึงกี่โมงและอยู่ไหน",
+          "relevant": [
+            "pickup_hours"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "availability",
+            "pickup_hours"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 0.5,
+          "complete": 1.0
+        },
+        {
+          "id": "t08",
+          "query": "ถ้าวันคืนตรงวันอาทิตย์ต้องทำอย่างไร",
+          "relevant": [
+            "weekend_return"
+          ],
+          "group": "thai",
+          "ranked": [
+            "weekend_return",
+            "pickup_hours",
+            "reservation"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t09",
+          "query": "ต่อเวลายืมได้กี่ครั้งและแจ้งก่อนกี่ชั่วโมง",
+          "relevant": [
+            "extension"
+          ],
+          "group": "thai",
+          "ranked": [
+            "extension",
+            "cancellation",
+            "reservation"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t10",
+          "query": "ทำกล้องตกเสียหายซ่อมเองได้ไหม",
+          "relevant": [
+            "damage"
+          ],
+          "group": "thai",
+          "ranked": [
+            "damage",
+            "audio_deposit",
+            "camera_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t11",
+          "query": "ไม่มารับของสองครั้งโดนพักสิทธิ์กี่วัน",
+          "relevant": [
+            "cancellation"
+          ],
+          "group": "thai",
+          "ranked": [
+            "cancellation",
+            "overdue_block",
+            "membership"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t12",
+          "query": "ยืมกล้องครั้งแรกต้องผ่านอบรมไหม",
+          "relevant": [
+            "training"
+          ],
+          "group": "thai",
+          "ranked": [
+            "training",
+            "lighting_deposit",
+            "camera_kit"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t13",
+          "query": "ในชุดกล้องมี SD card ให้หรือเปล่า",
+          "relevant": [
+            "camera_kit"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "camera_kit",
+            "damage",
+            "camera_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t14",
+          "query": "นำอุปกรณ์ไปใช้ถ่ายงานต่างประเทศได้ไหม",
+          "relevant": [
+            "outdoor"
+          ],
+          "group": "thai",
+          "ranked": [
+            "outdoor",
+            "lighting_deposit",
+            "damage"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t15",
+          "query": "ไฟล์ที่ลืมลบหลังคืนอุปกรณ์จะถูกเก็บกี่วัน",
+          "relevant": [
+            "privacy"
+          ],
+          "group": "thai",
+          "ranked": [
+            "privacy",
+            "cancellation",
+            "overdue_block"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t16",
+          "query": "ยังค้างค่าปรับจะยืมรายการใหม่ได้ไหม",
+          "relevant": [
+            "overdue_block"
+          ],
+          "group": "thai",
+          "ranked": [
+            "overdue_block",
+            "membership",
+            "late_fee"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t17",
+          "query": "maintenance ในหน้าคลังหมายถึงอะไร",
+          "relevant": [
+            "availability"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "availability",
+            "cancellation",
+            "outdoor"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t18",
+          "query": "LED-L60 deposit amount",
+          "relevant": [
+            "lighting_deposit"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "lighting_deposit",
+            "audio_deposit",
+            "late_fee"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t19",
+          "query": "ขอทราบเงินประกันของ CAM-R50 กับ MIC-WL",
+          "relevant": [
+            "camera_deposit",
+            "audio_deposit"
+          ],
+          "group": "multi",
+          "ranked": [
+            "camera_deposit",
+            "audio_deposit",
+            "lighting_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t20",
+          "query": "ต้องเป็นสมาชิกและอบรมก่อนยืมกล้องหรือไม่",
+          "relevant": [
+            "membership",
+            "training"
+          ],
+          "group": "multi",
+          "ranked": [
+            "training",
+            "membership",
+            "reservation"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t21",
+          "query": "ยืมได้กี่วันและขอต่อเวลาได้อย่างไร",
+          "relevant": [
+            "duration",
+            "extension"
+          ],
+          "group": "multi",
+          "ranked": [
+            "extension",
+            "cancellation",
+            "reservation"
+          ],
+          "recall": 0.5,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 0.0
+        },
+        {
+          "id": "t22",
+          "query": "ค่าปรับคืนช้าเท่าไร และถ้ายังค้างค่าปรับยืมใหม่ได้ไหม",
+          "relevant": [
+            "late_fee",
+            "overdue_block"
+          ],
+          "group": "multi",
+          "ranked": [
+            "overdue_block",
+            "late_fee",
+            "membership"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t23",
+          "query": "จองล่วงหน้ากี่ชั่วโมงและยกเลิกก่อนรับกี่ชั่วโมง",
+          "relevant": [
+            "reservation",
+            "cancellation"
+          ],
+          "group": "multi",
+          "ranked": [
+            "cancellation",
+            "reservation",
+            "extension"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t24",
+          "query": "วันคืนตรงวันเสาร์ ห้องอุปกรณ์เปิดวันไหนกี่โมง",
+          "relevant": [
+            "weekend_return",
+            "pickup_hours"
+          ],
+          "group": "multi",
+          "ranked": [
+            "weekend_return",
+            "pickup_hours",
+            "reservation"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t25",
+          "query": "Can I use the camera in rain and repair it myself if damaged?",
+          "relevant": [
+            "outdoor",
+            "damage"
+          ],
+          "group": "multi",
+          "ranked": [
+            "outdoor",
+            "extension",
+            "damage"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t26",
+          "query": "Does the camera kit include a memory card and should I delete my files?",
+          "relevant": [
+            "camera_kit",
+            "privacy"
+          ],
+          "group": "multi",
+          "ranked": [
+            "camera_kit",
+            "training",
+            "privacy"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t27",
+          "query": "camera deposit and first use training requirements",
+          "relevant": [
+            "camera_deposit",
+            "training"
+          ],
+          "group": "multi",
+          "ranked": [
+            "training",
+            "audio_deposit",
+            "lighting_deposit"
+          ],
+          "recall": 0.5,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 0.0
+        },
+        {
+          "id": "t28",
+          "query": "studio light LED-L60 deposit and training",
+          "relevant": [
+            "lighting_deposit",
+            "training"
+          ],
+          "group": "multi",
+          "ranked": [
+            "lighting_deposit",
+            "training",
+            "audio_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t29",
+          "query": "Where is pickup and is delivery offered? How far ahead must I reserve?",
+          "relevant": [
+            "pickup_hours",
+            "reservation"
+          ],
+          "group": "multi",
+          "ranked": [
+            "pickup_hours",
+            "reservation",
+            "lighting_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t30",
+          "query": "What is the standard loan period and the overdue daily fee cap?",
+          "relevant": [
+            "duration",
+            "late_fee"
+          ],
+          "group": "multi",
+          "ranked": [
+            "duration",
+            "overdue_block",
+            "late_fee"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        }
+      ]
+    },
+    {
+      "system": "hybrid_top3",
+      "cutoff": 3,
+      "recall": 0.9833,
+      "precision": 0.4556,
+      "mrr": 1.0,
+      "complete": 0.9667,
+      "groups": {
+        "exact_code": {
+          "n": 6,
+          "recall": 1.0,
+          "precision": 0.3333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        "multi": {
+          "n": 12,
+          "recall": 0.9583,
+          "precision": 0.6389,
+          "mrr": 1.0,
+          "complete": 0.9167
+        },
+        "thai": {
+          "n": 12,
+          "recall": 1.0,
+          "precision": 0.3333,
+          "mrr": 1.0,
+          "complete": 1.0
+        }
+      },
+      "details": [
+        {
+          "id": "t01",
+          "query": "สมาชิกหนึ่งคนยืมได้พร้อมกันกี่รายการ",
+          "relevant": [
+            "membership"
+          ],
+          "group": "thai",
+          "ranked": [
+            "membership",
+            "camera_kit",
+            "overdue_block"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t02",
+          "query": "ยืมอุปกรณ์ได้กี่วันปฏิทิน",
+          "relevant": [
+            "duration"
+          ],
+          "group": "thai",
+          "ranked": [
+            "duration",
+            "membership",
+            "outdoor"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t03",
+          "query": "CAM-A6400 ต้องวางเงินประกันเท่าไร",
+          "relevant": [
+            "camera_deposit"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "camera_deposit",
+            "audio_deposit",
+            "lighting_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t04",
+          "query": "MIC-WL เงินประกันกี่บาท",
+          "relevant": [
+            "audio_deposit"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "audio_deposit",
+            "camera_deposit",
+            "lighting_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t05",
+          "query": "คืนช้าคิดค่าปรับต่อวันและมีเพดานเท่าไร",
+          "relevant": [
+            "late_fee"
+          ],
+          "group": "thai",
+          "ranked": [
+            "late_fee",
+            "weekend_return",
+            "camera_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t06",
+          "query": "จองอุปกรณ์ล่วงหน้าขั้นต่ำกี่ชั่วโมง",
+          "relevant": [
+            "reservation"
+          ],
+          "group": "thai",
+          "ranked": [
+            "reservation",
+            "extension",
+            "cancellation"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t07",
+          "query": "ห้อง GM-201 เปิดถึงกี่โมงและอยู่ไหน",
+          "relevant": [
+            "pickup_hours"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "pickup_hours",
+            "availability"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t08",
+          "query": "ถ้าวันคืนตรงวันอาทิตย์ต้องทำอย่างไร",
+          "relevant": [
+            "weekend_return"
+          ],
+          "group": "thai",
+          "ranked": [
+            "weekend_return",
+            "pickup_hours",
+            "reservation"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t09",
+          "query": "ต่อเวลายืมได้กี่ครั้งและแจ้งก่อนกี่ชั่วโมง",
+          "relevant": [
+            "extension"
+          ],
+          "group": "thai",
+          "ranked": [
+            "extension",
+            "cancellation",
+            "reservation"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t10",
+          "query": "ทำกล้องตกเสียหายซ่อมเองได้ไหม",
+          "relevant": [
+            "damage"
+          ],
+          "group": "thai",
+          "ranked": [
+            "damage",
+            "audio_deposit",
+            "camera_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t11",
+          "query": "ไม่มารับของสองครั้งโดนพักสิทธิ์กี่วัน",
+          "relevant": [
+            "cancellation"
+          ],
+          "group": "thai",
+          "ranked": [
+            "cancellation",
+            "overdue_block",
+            "membership"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t12",
+          "query": "ยืมกล้องครั้งแรกต้องผ่านอบรมไหม",
+          "relevant": [
+            "training"
+          ],
+          "group": "thai",
+          "ranked": [
+            "training",
+            "lighting_deposit",
+            "camera_kit"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t13",
+          "query": "ในชุดกล้องมี SD card ให้หรือเปล่า",
+          "relevant": [
+            "camera_kit"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "camera_kit",
+            "damage",
+            "camera_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t14",
+          "query": "นำอุปกรณ์ไปใช้ถ่ายงานต่างประเทศได้ไหม",
+          "relevant": [
+            "outdoor"
+          ],
+          "group": "thai",
+          "ranked": [
+            "outdoor",
+            "damage",
+            "lighting_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t15",
+          "query": "ไฟล์ที่ลืมลบหลังคืนอุปกรณ์จะถูกเก็บกี่วัน",
+          "relevant": [
+            "privacy"
+          ],
+          "group": "thai",
+          "ranked": [
+            "privacy",
+            "cancellation",
+            "pickup_hours"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t16",
+          "query": "ยังค้างค่าปรับจะยืมรายการใหม่ได้ไหม",
+          "relevant": [
+            "overdue_block"
+          ],
+          "group": "thai",
+          "ranked": [
+            "overdue_block",
+            "late_fee",
+            "membership"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t17",
+          "query": "maintenance ในหน้าคลังหมายถึงอะไร",
+          "relevant": [
+            "availability"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "availability",
+            "cancellation",
+            "outdoor"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t18",
+          "query": "LED-L60 deposit amount",
+          "relevant": [
+            "lighting_deposit"
+          ],
+          "group": "exact_code",
+          "ranked": [
+            "lighting_deposit",
+            "audio_deposit",
+            "camera_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t19",
+          "query": "ขอทราบเงินประกันของ CAM-R50 กับ MIC-WL",
+          "relevant": [
+            "camera_deposit",
+            "audio_deposit"
+          ],
+          "group": "multi",
+          "ranked": [
+            "camera_deposit",
+            "audio_deposit",
+            "lighting_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t20",
+          "query": "ต้องเป็นสมาชิกและอบรมก่อนยืมกล้องหรือไม่",
+          "relevant": [
+            "membership",
+            "training"
+          ],
+          "group": "multi",
+          "ranked": [
+            "training",
+            "membership",
+            "reservation"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t21",
+          "query": "ยืมได้กี่วันและขอต่อเวลาได้อย่างไร",
+          "relevant": [
+            "duration",
+            "extension"
+          ],
+          "group": "multi",
+          "ranked": [
+            "extension",
+            "cancellation",
+            "duration"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t22",
+          "query": "ค่าปรับคืนช้าเท่าไร และถ้ายังค้างค่าปรับยืมใหม่ได้ไหม",
+          "relevant": [
+            "late_fee",
+            "overdue_block"
+          ],
+          "group": "multi",
+          "ranked": [
+            "overdue_block",
+            "late_fee",
+            "weekend_return"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t23",
+          "query": "จองล่วงหน้ากี่ชั่วโมงและยกเลิกก่อนรับกี่ชั่วโมง",
+          "relevant": [
+            "reservation",
+            "cancellation"
+          ],
+          "group": "multi",
+          "ranked": [
+            "cancellation",
+            "reservation",
+            "extension"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t24",
+          "query": "วันคืนตรงวันเสาร์ ห้องอุปกรณ์เปิดวันไหนกี่โมง",
+          "relevant": [
+            "weekend_return",
+            "pickup_hours"
+          ],
+          "group": "multi",
+          "ranked": [
+            "weekend_return",
+            "pickup_hours",
+            "reservation"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t25",
+          "query": "Can I use the camera in rain and repair it myself if damaged?",
+          "relevant": [
+            "outdoor",
+            "damage"
+          ],
+          "group": "multi",
+          "ranked": [
+            "outdoor",
+            "damage",
+            "training"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t26",
+          "query": "Does the camera kit include a memory card and should I delete my files?",
+          "relevant": [
+            "camera_kit",
+            "privacy"
+          ],
+          "group": "multi",
+          "ranked": [
+            "camera_kit",
+            "training",
+            "privacy"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t27",
+          "query": "camera deposit and first use training requirements",
+          "relevant": [
+            "camera_deposit",
+            "training"
+          ],
+          "group": "multi",
+          "ranked": [
+            "training",
+            "lighting_deposit",
+            "audio_deposit"
+          ],
+          "recall": 0.5,
+          "precision": 0.3333333333333333,
+          "mrr": 1.0,
+          "complete": 0.0
+        },
+        {
+          "id": "t28",
+          "query": "studio light LED-L60 deposit and training",
+          "relevant": [
+            "lighting_deposit",
+            "training"
+          ],
+          "group": "multi",
+          "ranked": [
+            "lighting_deposit",
+            "training",
+            "audio_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t29",
+          "query": "Where is pickup and is delivery offered? How far ahead must I reserve?",
+          "relevant": [
+            "pickup_hours",
+            "reservation"
+          ],
+          "group": "multi",
+          "ranked": [
+            "reservation",
+            "pickup_hours",
+            "lighting_deposit"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        },
+        {
+          "id": "t30",
+          "query": "What is the standard loan period and the overdue daily fee cap?",
+          "relevant": [
+            "duration",
+            "late_fee"
+          ],
+          "group": "multi",
+          "ranked": [
+            "duration",
+            "late_fee",
+            "overdue_block"
+          ],
+          "recall": 1.0,
+          "precision": 0.6666666666666666,
+          "mrr": 1.0,
+          "complete": 1.0
+        }
+      ]
+    }
+  ]
+}
