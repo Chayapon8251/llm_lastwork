@@ -30,7 +30,8 @@ def evaluate():
             subset = [d for d in details if d["group"] == group]
             groups[group] = {"n": len(subset), **{m: round(sum(d[m] for d in subset)/len(subset), 4) for m in averages}}
         rows.append({"system": name, "cutoff": k, **averages, "groups": groups, "details": details})
-    result = {"benchmark": "GearMate curated lexical retrieval v1", "n": len(cases), "llm_evaluated": False, "config": {"vector": "character-trigram TF-IDF, not neural embeddings", "rrf_k": 60, "cosine_floor": 0.04, "candidate_limit_per_retriever": 10}, "hashes": {p: hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ("data/policies.json", "eval/test.json", "app/retrieval.py")}, "systems": rows}
+    hashes = {p: hashlib.sha256((ROOT/p).read_text(encoding="utf-8-sig").replace("\r\n", "\n").encode("utf-8")).hexdigest() for p in ("data/policies.json", "eval/test.json", "app/retrieval.py")}
+    result = {"benchmark": "GearMate curated lexical retrieval v1", "n": len(cases), "llm_evaluated": False, "config": {"vector": "character-trigram TF-IDF, not neural embeddings", "rrf_k": 60, "cosine_floor": 0.04, "candidate_limit_per_retriever": 10, "selected_method": "vector_top3", "hash_normalization": "UTF-8 without BOM, LF newlines"}, "hashes": hashes, "systems": rows}
     output = ROOT / "results/retrieval.json"
     output.parent.mkdir(exist_ok=True)
     output.write_text(json.dumps(result, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")

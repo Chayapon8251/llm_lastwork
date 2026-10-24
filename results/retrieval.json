@@ -6,7 +6,9 @@
     "vector": "character-trigram TF-IDF, not neural embeddings",
     "rrf_k": 60,
     "cosine_floor": 0.04,
-    "candidate_limit_per_retriever": 10
+    "candidate_limit_per_retriever": 10,
+    "selected_method": "vector_top3",
+    "hash_normalization": "UTF-8 without BOM, LF newlines"
   },
   "hashes": {
     "data/policies.json": "0f68074f4cb1844e0a7e752a03e93f98d3a66b655ae223b1e2f21a66d8c60690",
