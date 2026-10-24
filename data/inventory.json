@@ -1,0 +1,14 @@
+[
+  {"id":"CAM-01","code":"CAM-A6400","name":"Sony A6400 kit","category":"camera","status":"available","deposit":300},
+  {"id":"CAM-02","code":"CAM-A6400","name":"Sony A6400 kit","category":"camera","status":"borrowed","deposit":300},
+  {"id":"CAM-03","code":"CAM-R50","name":"Canon R50 kit","category":"camera","status":"available","deposit":300},
+  {"id":"MIC-01","code":"MIC-WL","name":"Wireless microphone set","category":"audio","status":"available","deposit":100},
+  {"id":"MIC-02","code":"MIC-WL","name":"Wireless microphone set","category":"audio","status":"available","deposit":100},
+  {"id":"MIC-03","code":"MIC-WL","name":"Wireless microphone set","category":"audio","status":"maintenance","deposit":100},
+  {"id":"REC-01","code":"REC-H1","name":"Zoom H1 recorder","category":"audio","status":"borrowed","deposit":100},
+  {"id":"TRI-01","code":"TRI-T1","name":"Video tripod","category":"tripod","status":"available","deposit":0},
+  {"id":"TRI-02","code":"TRI-T1","name":"Video tripod","category":"tripod","status":"available","deposit":0},
+  {"id":"LED-01","code":"LED-L60","name":"LED studio light","category":"lighting","status":"available","deposit":200},
+  {"id":"LED-02","code":"LED-L60","name":"LED studio light","category":"lighting","status":"maintenance","deposit":200},
+  {"id":"LED-03","code":"LED-L60","name":"LED studio light","category":"lighting","status":"borrowed","deposit":200}
+]
