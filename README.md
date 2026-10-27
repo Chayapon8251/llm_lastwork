@@ -2,9 +2,9 @@
 
 แอปภาษาไทยสำหรับค้นกฎการยืมอุปกรณ์และตรวจรายการว่างจาก SQLite โดย agent เลือก tool เอง พร้อมแสดงแหล่งอ้างอิงและผลการเรียก tool ให้ตรวจสอบ
 
-**สถานะปัจจุบัน:** เชื่อม class proxy ด้วย `gemma-4-E4B-it` และทดสอบจริงสำเร็จเมื่อ 25 ตุลาคม 2569 แล้ว มีผล smoke test 3 สถานการณ์ใน [`results/live-smoke.json`](results/live-smoke.json) ส่วน retrieval evaluation 30 ข้อเป็นการวัดอีกชุดหนึ่ง ไม่ใช่คะแนนความถูกต้องของคำตอบ LLM
+**สถานะปัจจุบัน:** เชื่อม class proxy ด้วย `gemma-4-E4B-it` และทดสอบจริง มีผล smoke test 3 สถานการณ์ใน [`results/live-smoke.json`](results/live-smoke.json) ส่วน retrieval evaluation 30 ข้อเป็นการวัดอีกชุดหนึ่ง ไม่ใช่คะแนนความถูกต้องของคำตอบ LLM
 
-**เว็บออนไลน์:** [GearMate](https://gearmate.onrender.com)
+**เว็บlink:** [GearMate](https://gearmate.onrender.com)
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Chayapon8251/llm_lastwork)
 
@@ -12,7 +12,7 @@
 
 ## แอปช่วยอะไร
 
-คำถามอย่าง **“กล้องว่างกี่ตัว และต้องวางเงินประกันเท่าไร”** ต้องใช้ทั้งจำนวนจากตารางและเงื่อนไขในคู่มือ GearMate จึงมีสอง tool:
+คำถามอย่าง **“กล้องว่างกี่ตัว และต้องวางเงินประกันมั้ย กี่บาท?”** ต้องใช้ทั้งจำนวนจากตารางและเงื่อนไขในคู่มือ GearMate จึงมีสอง tool:
 
 - `search_docs`: ค้นนโยบายการยืม พร้อมข้อความและ source ID
 - `query_inventory`: อ่าน SQL snapshot ด้วยตัวกรองที่ตรวจสอบแล้ว ไม่รับ raw SQL จากโมเดล
