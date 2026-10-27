@@ -20,8 +20,8 @@
   },
   "evaluation_endpoint_available": true,
   "browser_smoke_test": {
-    "question": "���ͧ��ҧ����� ��е�ͧ�ҧ�Թ��Сѹ�����",
-    "answer": "�ա��ͧ��ҧ������ 2 ��� �������Ѻ���ͧ���� CAM-A6400 ��� CAM-R50 ��ͧ�ҧ�Թ��Сѹ 300 �ҷ�����¡��",
+    "question": "กล้องว่างกี่ตัว และต้องวางเงินประกันเท่าไร",
+    "answer": "มีกล้องว่างทั้งหมด 2 ตัว และสำหรับกล้องรหัส CAM-A6400 และ CAM-R50 ต้องวางเงินประกัน 300 บาทต่อรายการ",
     "displayed_latency_ms": 26532,
     "displayed_model": "gemma-4-E4B-it",
     "tools": [
