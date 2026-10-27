@@ -1,0 +1,44 @@
+{
+  "verified_date": "2026-10-27",
+  "timezone": "Asia/Bangkok",
+  "url": "https://gearmate.onrender.com",
+  "provider": "Render",
+  "plan": "Free",
+  "deployed_app_commit": "2a10aa91f9994c257977723f2231795f929da88a",
+  "health": {
+    "status": "ok",
+    "mode": "live"
+  },
+  "configuration": {
+    "configured": true,
+    "mode": "live",
+    "model": "gemma-4-E4B-it",
+    "max_steps": 5,
+    "synthetic_data": true,
+    "policy_count": 18,
+    "inventory_count": 12
+  },
+  "evaluation_endpoint_available": true,
+  "browser_smoke_test": {
+    "question": "���ͧ��ҧ����� ��е�ͧ�ҧ�Թ��Сѹ�����",
+    "answer": "�ա��ͧ��ҧ������ 2 ��� �������Ѻ���ͧ���� CAM-A6400 ��� CAM-R50 ��ͧ�ҧ�Թ��Сѹ 300 �ҷ�����¡��",
+    "displayed_latency_ms": 26532,
+    "displayed_model": "gemma-4-E4B-it",
+    "tools": [
+      "query_inventory",
+      "search_docs"
+    ],
+    "tool_errors": [
+      null,
+      null
+    ],
+    "inventory_count": 2,
+    "cited_sources": [
+      "inventory",
+      "camera_deposit"
+    ],
+    "termination": "final_answer",
+    "passed": true
+  },
+  "scope": "One end-to-end hosted smoke test and endpoint availability checks; not an overall answer-accuracy or faithfulness evaluation."
+}
