@@ -1,0 +1,87 @@
+/* Readable Thai type at normal browser zoom, including wide desktop screens. */
+body { font-size: 16px; }
+.breadcrumb, .status { font-size: 13px; }
+.sidebar-label { font-size: 11px; }
+.nav-item { font-size: 15px; padding: 15px 12px; }
+.sidebar-note strong { font-size: 15px; }
+.sidebar-note p, .sidebar-bottom { font-size: 12px; }
+.sidebar-bottom small { font-size: 10px; }
+.eyebrow, .edition { font-size: 11px; }
+.hero p { font-size: 16px; line-height: 1.8; }
+.notice { font-size: 14px; }
+.notice strong { font-size: 14px; }
+.notice div > span { font-size: 12px; }
+.card-heading, .stock-card .card-heading { font-size: 16px; }
+.text-button { font-size: 13px; }
+.conversation { min-height: 300px; max-height: min(66vh, 780px); padding: 26px; }
+.welcome strong { font-size: 17px; }
+.welcome p { font-size: 15px; }
+.suggestions button { font-size: 14px; padding: 11px 13px; }
+textarea { font-size: 16px; min-height: 35px; }
+#send-button { width: 42px; height: 40px; }
+.input-caption { font-size: 11px; }
+.bubble { font-size: clamp(16px, 0.92vw, 18px); line-height: 1.95; }
+.answer-meta { font-size: 11px; flex-wrap: wrap; }
+.source-button { font-size: 12px; padding: 6px 10px; }
+.source-text { font-size: 14px; }
+.trace { font-size: 13px; }
+.trace pre { font-size: 12px; line-height: 1.7; }
+.thinking, .error { font-size: 15px; }
+.stock-row strong { font-size: 14px; }
+.stock-row small { font-size: 10px; }
+.stock-row b { font-size: 21px; }
+.all-stock { font-size: 13px; }
+.proof-card .eyebrow { font-size: 9px; }
+.proof-card p { font-size: 13px; }
+.proof-footer { gap: 6px; flex-wrap: wrap; font-size: 10px; }
+.tiny-tag { font-size: 9px; }
+footer { font-size: 11px; gap: 15px; flex-wrap: wrap; }
+.section-intro p, .filters button { font-size: 15px; }
+.equipment-card small { font-size: 12px; }
+.equipment-card h3 { font-size: 18px; }
+.equipment-card .equipment-meta { font-size: 13px; gap: 10px; flex-wrap: wrap; }
+.pill { font-size: 12px; }
+.metric span { font-size: 14px; }
+.metric small { font-size: 12px; }
+table { font-size: 15px; }
+th { font-size: 13px; }
+.eval-notes h3 { font-size: 20px; }
+.eval-notes p, .failure-list { font-size: 15px; }
+dialog p, .primary { font-size: 15px; }
+@media (min-width: 1600px) {
+  main { max-width: 1570px; }
+  .content-grid { grid-template-columns: minmax(0, 1fr) 350px; }
+  .hero { min-height: 285px; }
+  .conversation { min-height: 350px; }
+}
+@media (max-width: 1150px) {
+  .content-grid { grid-template-columns: minmax(0, 1fr) 260px; }
+  .card-heading { padding: 16px; }
+}
+@media (max-width: 850px) {
+  .nav-item { font-size: 0; }
+  .content-grid { grid-template-columns: 1fr; }
+  .right-column { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .hero { overflow: hidden; }
+  .breadcrumb { font-size: 10px; }
+  .status { font-size: 10px; }
+  .hero p { font-size: 14px; }
+  .eyebrow, .page-top .eyebrow { font-size: 9px; }
+  .notice, .notice strong { font-size: 12px; }
+  .notice div > span { font-size: 11px; }
+  .conversation { padding: 18px 14px; min-height: 280px; }
+  .welcome strong { font-size: 15px; }
+  .welcome p, .suggestions button { font-size: 13px; }
+  .user-message { margin-left: 18px; }
+  .bubble { font-size: 16px; }
+  .input-caption { font-size: 9px; flex-wrap: wrap; gap: 4px; }
+  .right-column { grid-template-columns: 1fr; }
+  .section-intro p { font-size: 14px; }
+  .metric-grid { grid-template-columns: 1fr; }
+  .metric { padding: 18px; }
+  .metric strong { font-size: 30px; }
+  .metric span { font-size: 14px; }
+  .metric small { font-size: 12px; }
+}

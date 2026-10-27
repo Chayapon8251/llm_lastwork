@@ -1,20 +1,37 @@
-# GearMate — ถามก่อนยืม
+# GearMate — ผู้ช่วยยืมอุปกรณ์ชมรม
 
-ผู้ช่วยค้นกฎการยืมอุปกรณ์ชมรมและตรวจอุปกรณ์ว่างจาก SQLite พร้อมแหล่งอ้างอิง ผล tool และหน้าประเมิน retrieval
+แอปภาษาไทยสำหรับค้นกฎการยืมอุปกรณ์และตรวจรายการว่างจาก SQLite โดย agent เลือก tool เอง พร้อมแสดงแหล่งอ้างอิงและผลการเรียก tool ให้ตรวจสอบ
 
-**สถานะ:** แอปรันได้และทดสอบ offline แล้ว ส่วน class proxy ยังต้องใส่ credentials และรัน smoke test จริงก่อนส่งงาน โหมด demo ใช้คำตอบจากโค้ดและติดป้ายชัดเจน ไม่ได้เรียก LLM
+**สถานะปัจจุบัน:** เชื่อม class proxy ด้วย `gemma-4-E4B-it` และทดสอบจริงสำเร็จเมื่อ 25 ตุลาคม 2569 แล้ว มีผล smoke test 3 สถานการณ์ใน [`results/live-smoke.json`](results/live-smoke.json) ส่วน retrieval evaluation 30 ข้อเป็นการวัดอีกชุดหนึ่ง ไม่ใช่คะแนนความถูกต้องของคำตอบ LLM
 
-![GearMate interface](docs/screenshots/home.png)
+**เว็บออนไลน์:** เตรียม deploy บน Render ด้วย [`render.yaml`](render.yaml) แล้ว ยังไม่ใส่ URL เว็บจริงจนกว่าจะยืนยันว่า deploy และเรียกโมเดลได้สำเร็จ ลิงก์ `127.0.0.1` เป็นเพียงเว็บบนเครื่องตนเอง
 
-## ปัญหาและขอบเขต
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Chayapon8251/llm_lastwork)
 
-นักศึกษาต้องค้นหลายที่เพื่อรู้ว่ายืมกล้องได้กี่วัน วางเงินประกันเท่าไร และเหลืออุปกรณ์กี่ชิ้น GearMate รวมข้อมูลเหล่านี้ในแชตเดียว โดย agent เลือก `search_docs` หรือ `query_inventory` และอธิบายคำตอบจากผลที่ได้รับ
+![หน้า GearMate หลังขยายข้อความ](docs/screenshots/readability-desktop.png)
 
-ข้อมูลสมมติทั้งหมดสร้างสำหรับโปรเจกต์นี้: 18 นโยบายไทย/อังกฤษ และอุปกรณ์ 12 ชิ้น ไม่ใช้ corpus ของแอปตัวอย่างวิชา ไม่มีการจอง ตัดเงิน หรือแก้ไขรายการยืมจริง โดเมนสมมติไม่ใช่นโยบายมหาวิทยาลัยใด
+## แอปช่วยอะไร
 
-## เริ่มรันบน Windows
+คำถามอย่าง **“กล้องว่างกี่ตัว และต้องวางเงินประกันเท่าไร”** ต้องใช้ทั้งจำนวนจากตารางและเงื่อนไขในคู่มือ GearMate จึงมีสอง tool:
 
-ใช้ Python 3.11 ขึ้นไป (เครื่องที่พัฒนาและทดสอบใช้ Python 3.12)
+- `search_docs`: ค้นนโยบายการยืม พร้อมข้อความและ source ID
+- `query_inventory`: อ่าน SQL snapshot ด้วยตัวกรองที่ตรวจสอบแล้ว ไม่รับ raw SQL จากโมเดล
+
+ข้อมูลทั้งหมดเป็นชมรมสมมติที่สร้างใหม่สำหรับโครงงาน: 18 นโยบายไทย/อังกฤษและอุปกรณ์ 12 ชิ้น ไม่ใช่ข้อมูลมหาวิทยาลัยจริง ไม่ใช้ corpus ของแอปตัวอย่าง และไม่มีการจอง ชำระเงิน หรือลบข้อมูลจริง
+
+## สิ่งที่ทดสอบกับโมเดลจริงแล้ว
+
+| คำถาม | สิ่งที่ตรวจพบ |
+|---|---|
+| สวัสดีครับ | โมเดลตอบโดยไม่เรียก tool |
+| กล้องว่างกี่ตัว และเงินประกันเท่าไร | ใช้ SQL และค้นคู่มือ ตอบ 2 กล้อง ประกัน 300 บาทต่อรายการ อ้าง inventory และ camera_deposit |
+| มีโดรนให้ยืมไหม | โมเดลขอ category=drone ซึ่ง validator ปฏิเสธ แล้วตอบว่าไม่มีข้อมูลในหมวดที่รองรับ |
+
+กรณีโดรนแสดงการป้องกัน arguments นอก schema ไม่ใช่การค้นแล้วพบว่าจำนวนโดรนเป็นศูนย์ ผลทั้งสามเป็น smoke test ของการเชื่อมต่อและเส้นทาง tool ยังไม่พออ้าง accuracy หรือ faithfulness โดยรวม
+
+## รันบนเครื่อง
+
+ใช้ Python 3.11 ขึ้นไป เครื่องที่ทดสอบใช้ Python 3.12
 
 ```powershell
 git clone https://github.com/Chayapon8251/llm_lastwork.git
@@ -25,129 +42,113 @@ py -m venv .venv
 .\.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
-เปิด http://127.0.0.1:8000 และดู API schema ได้ที่ http://127.0.0.1:8000/docs ถ้ามี dependencies อยู่แล้ว ใช้ `powershell -ExecutionPolicy Bypass -File .\run.ps1` เพื่อรันใน process นี้ได้ ไม่ต้องเปลี่ยน execution policy ของระบบ
+เปิด http://127.0.0.1:8000 และดู REST API schema ที่ http://127.0.0.1:8000/docs หากเคยติดตั้งแล้วใช้ `run.ps1` ได้ ส่วน Linux/macOS ใช้ `python3 -m venv .venv` และ `.venv/bin/python` แทน path ของ Python
 
-Linux/macOS: ใช้ `python3 -m venv .venv` และ `.venv/bin/python` แทน path ของ Python ด้านบน
+### ตั้งค่า class proxy
 
-### เชื่อม class proxy จริง
-
-```powershell
-Copy-Item .env.example .env
-notepad .env
-```
-
-ใส่ค่าที่ได้จากผู้สอนใน `.env` ของเครื่อง:
+คัดลอก `.env.example` เป็น `.env` เฉพาะเมื่อยังไม่มีไฟล์ `.env` แล้วตั้งค่าจากผู้สอน:
 
 ```dotenv
 OPENAI_API_KEY=your-class-proxy-key
-OPENAI_BASE_URL=https://your-class-proxy.example/v1
+OPENAI_BASE_URL=https://llm.nat-d.uk/v1
 OPENAI_MODEL=gemma-4-E4B-it
 GEARMATE_MODE=live
 ```
 
-URL ด้านบนเป็น placeholder ต้องใช้ URL จริงจากผู้สอน **ไม่ต้องส่ง key ลง GitHub หรือแชต** เริ่ม server ใหม่ แล้วป้ายจะเป็น Class proxy เมื่อข้อมูลครบ SDK ใช้ `from openai import OpenAI; OpenAI()` ซึ่งอ่าน environment ดังกล่าว โมเดลคงเป็น `gemma-4-E4B-it` ตามโจทย์
+SDK ใช้ `from openai import OpenAI; OpenAI()` อ่านค่าจาก environment และคงโมเดลตามโจทย์ **อย่าส่ง `.env` หรือ API key ขึ้น Git** browser ไม่มี endpoint อ่าน key เริ่ม server ใหม่หลังแก้ `.env`
 
-- `GEARMATE_MODE=auto`: ใช้ proxy เมื่อมีทั้ง key และ base URL มิฉะนั้นเป็น demo
-- `GEARMATE_MODE=live`: ขาดค่าจะตอบ error ชัดเจน ไม่สลับไปจำลองเมื่อ proxy ล้มเหลว
-- การแสดงว่า configured หมายถึงมีค่าครบ **ไม่ได้ยืนยันว่า key ใช้ได้** ต้องรัน `python -m scripts.smoke_live` เพื่อทดสอบจริง
-- `.env` ถูก ignore; browser ไม่มี endpoint อ่าน key
+- `auto`: ใช้ live เมื่อมีทั้ง key และ base URL มิฉะนั้นเป็นโหมดสาธิตที่ติดป้ายชัดเจน
+- `live`: ต้องมีค่าครบ ถ้า proxy ล้มเหลวให้ error ไม่สลับไปตอบจากโค้ดเงียบ ๆ
+- `demo`: การเลือก tool และคำตอบมาจากโค้ด ไม่ใช่ LLM
+- ป้าย configured หมายถึงมีค่าครบ ไม่ใช่การตรวจ key กับ proxy ต้องลองคำถามหรือรัน `python -m scripts.smoke_live`
 
-## คำถามสำหรับลอง
+## Deploy แอปเดิมบน Render
 
-1. `กล้องว่างกี่ตัว และต้องวางเงินประกันเท่าไร` → อ่าน SQL snapshot + ค้นนโยบาย
-2. `ระยะเวลายืมปกติกี่วัน` → ค้นเอกสาร
-3. `สวัสดีครับ` → ตอบโดยไม่ใช้ tool
-4. `มีโดรนให้ยืมไหม` → ข้อมูลโดรนไม่มี ควรแจ้งข้อจำกัด
-5. `ยืมได้กี่วัน` → failure ของ lexical retriever: คำสั้นอาจค้นเรื่องต่อเวลาแทนระยะเวลาปกติ อย่าตัดกรณีนี้ออกจากเดโม
+ใช้ Python/FastAPI เดิมทั้ง frontend และ backend ใน Web Service เดียว ไม่ใช่การอัปโหลด HTML อย่างเดียว และไม่ต้องเปิดเครื่องส่วนตัวทิ้งไว้
 
-ใน demo การเลือก tool เป็นกฎในโค้ดและการตอบเป็น extractive ไม่ใช่ความสามารถของ LLM; ใน live โมเดลเป็นผู้เลือก native tool calls และทำคำตอบขั้นสุดท้าย
+1. เปิดปุ่ม Deploy to Render ด้านบน หรือสร้าง Blueprint จาก repo นี้
+2. ตรวจว่าใช้ Free instance ตาม `render.yaml` โดยไม่มีฐานข้อมูลแบบเสียเงินเพิ่ม
+3. ใส่ `OPENAI_API_KEY` เฉพาะใน environment ของ Render ช่องนี้ตั้งเป็น `sync: false` จึงไม่อยู่ใน YAML หรือ Git
+4. รอ build และ health check `/healthz` ผ่าน แล้วทดสอบคำถามจริงบน URL `.onrender.com` ที่ Render ให้
+5. เมื่อยืนยันแล้ว ใส่ URL นั้นในส่วนเว็บออนไลน์ของ README และใช้ส่ง Q3 ได้
 
-## สถาปัตยกรรมและเทคนิคในวิชา
+Free service อาจพักเมื่อไม่มี request ประมาณ 15 นาที และการเปิดครั้งถัดไปอาจรอประมาณหนึ่งนาที ข้อมูลของเราโหลดจาก JSON ที่ commit ไว้และสร้าง SQLite snapshot ใหม่ได้ จึงไม่ต้องใช้ persistent disk
+
+การ deploy เปิด `GEARMATE_PUBLIC_DEMO=true`: จำกัด `/api/chat` ที่ 6 requests/นาทีต่อ client, 40 requests/ชั่วโมงรวม และ 120 requests/วันรวม พร้อมขีดจำกัดขนาด body 64 KiB และ 2 requests ที่ประมวลผลพร้อมกัน Budget อยู่ในหน่วยความจำของ process เดียวและ reset เมื่อ restart ไม่ใช่ระบบ quota ถาวรสำหรับ production แต่ละคำถามยังเรียก LLM ได้หลายครั้งตาม agent loop
+
+ดูขั้นตอนละเอียดและวิธีตรวจหลัง deploy ที่ [`docs/deploy-th.md`](docs/deploy-th.md) อย่าส่งงานด้วย URL ของหน้า dashboard หรือกดปุ่ม deploy แล้วถือว่าสำเร็จโดยยังไม่ทดสอบ
+
+## สถาปัตยกรรม
 
 ```mermaid
 flowchart TD
-    UI[Thai web UI] --> API[FastAPI /api/chat]
-    API --> MODE{Configured mode}
-    MODE -->|demo| DEMO[Labelled deterministic demo]
-    MODE -->|live| LLM[OpenAI SDK / class proxy / gemma-4-E4B-it]
-    LLM --> LOOP[Native tool loop: max 5 turns / 8 tool calls]
-    LOOP --> CHECK[Allow-list + Pydantic argument validation]
-    CHECK --> SEARCH[search_docs: TF-IDF cosine top-3]
-    CHECK --> SQL[query_inventory: bound SELECT / query_only]
-    SEARCH --> DATA[Original policy records]
-    SQL --> STOCK[Synthetic inventory snapshot]
-    SEARCH --> OBS[role: tool + tool_call_id]
+    UI[หน้าเว็บภาษาไทย] --> API[FastAPI ตรวจ input]
+    API --> MODE{โหมดที่ตั้งไว้}
+    MODE -->|demo| DEMO[คำตอบสาธิตจากโค้ด]
+    MODE -->|live| LLM[OpenAI SDK ผ่าน class proxy]
+    LLM --> LOOP[Native tool loop]
+    LOOP --> VALID[Allow-list และ Pydantic]
+    VALID --> DOCS[search_docs ค้นคู่มือ]
+    VALID --> SQL[query_inventory อ่าน SQLite]
+    DOCS --> OBS[role tool พร้อม tool_call_id]
     SQL --> OBS
     OBS --> LLM
-    LOOP --> FINAL[Separate JSON rendering request]
-    FINAL --> VALID[Validate schema + source ID membership]
-    VALID --> UI
-    EVAL[30 labelled questions] --> METRICS[Baseline / Recall / MRR / failures]
-    METRICS --> UI
+    LOOP --> FINAL[จัด final JSON แยกอีก request]
+    FINAL --> CHECK[ตรวจ schema และ source IDs]
+    CHECK --> UI
+    EVAL[คำถามติด label 30 ข้อ] --> RESULTS[Baseline และ metrics]
+    RESULTS --> UI
 ```
 
-| Capability family | อยู่ตรงไหน | ข้อจำกัดที่ต้องบอก |
-|---|---|---|
-| Structured output + validation | `app/schemas.py`, final JSON renderer | schema ไม่พิสูจน์ว่าข้อความเป็นจริง |
-| Evaluation (required) | `eval/test.json`, `scripts/evaluate.py` | ยังเป็น curated set ที่สร้างด้วย AI ช่วย |
-| Agent loop (agentic) | `app/agent.py` native tool calling + stop/caps | ทดสอบ protocol ด้วย stubs แล้ว; real proxy ต้องทดสอบเพิ่ม |
-| SQL (advanced/agentic) | `app/inventory.py` | model เลือกตัวกรอง; ไม่ได้สร้าง raw SQL อิสระ |
-| Served interface | `app/main.py`, `static/` | local app; ยังไม่ได้ deploy |
-| Retrieval + citations | `app/retrieval.py` | ใช้ sparse lexical TF-IDF vectors ไม่ใช่ neural semantic embeddings |
+หยุดเมื่อโมเดลตอบโดยไม่มี tool call หรือครบ 5 model turns / 8 tool calls ปฏิเสธ call เดิมซ้ำ และส่งผลตอบทุก `tool_call_id` รวมกรณี parallel calls
 
-การตรวจ family ที่ชัดเจนใช้ structured output, evaluation, agent loop, SQL และ REST/UI ไม่ต้องอ้างว่าได้ทำ neural RAG หรือใช้ทุกเทคนิคในวิชา
+| กลุ่มความสามารถในวิชา | ส่วนที่ใช้ |
+|---|---|
+| Structured output และ validation | `app/schemas.py` กับ final JSON renderer |
+| Evaluation ที่โจทย์บังคับ | ชุด 30 ข้อและ `scripts/evaluate.py` |
+| Agent loop แบบ agentic | native function calling พร้อม stop condition |
+| SQL แบบ advanced/agentic | SELECT จาก template และ bound values บน query-only connection |
+| REST และ UI | FastAPI พร้อมหน้าแชต คลังอุปกรณ์ และผลประเมิน |
+| Retrieval และ citation | TF-IDF แบบ lexical ไม่ใช่ neural semantic embeddings |
 
-### Retrieval choice
-
-แต่ละนโยบายเป็น topic-sized chunk เพื่อเก็บเงื่อนไขครบ TF-IDF ใช้ character trigrams จึงไม่ต้องติดตั้ง Thai tokenizer; BM25 ใช้ English tokens + Thai bigrams RRF รวมด้วย rank ที่ k=60 มี threshold cosine 0.04 ซึ่งเป็นค่า heuristic จากการพัฒนา ไม่ใช่ calibrated confidence
-
-**เลือก vector top-3 เป็น default** เพราะเทียบกับ top-1 แล้ว recall เพิ่ม ส่วน hybrid top-3 ได้เท่ากัน จึงยังไม่เพิ่มความซับซ้อนเพื่ออ้าง improvement ที่ไม่มีหลักฐาน วิธี hybrid ยังอยู่ให้ตรวจและทำซ้ำได้ ไม่มี cross-encoder หรือ LLM reranker ในเวอร์ชันนี้
-
-## ประเมินผลและทำซ้ำ
+## ประเมิน retrieval
 
 ```powershell
 .\.venv\Scripts\python.exe -m scripts.evaluate
 .\.venv\Scripts\python.exe -m pytest -q
 ```
 
-| ระบบ | k | Recall@k | Precision@k | MRR (returned list) | ครบทุก relevant source |
+| วิธี | k | Recall@k | Precision@k | MRR ในรายการที่คืน | ครบทุกแหล่ง |
 |---|---:|---:|---:|---:|---:|
-| Vector top-1 (baseline) | 1 | 0.8000 | 1.0000 | 1.0000 | 0.6000 |
-| Vector top-3 (เลือกใช้) | 3 | 0.9833 | 0.4556 | 1.0000 | 0.9667 |
+| Vector top-1 baseline | 1 | 0.8000 | 1.0000 | 1.0000 | 0.6000 |
+| Vector top-3 เลือกใช้ | 3 | 0.9833 | 0.4556 | 1.0000 | 0.9667 |
 | BM25 top-3 | 3 | 0.9667 | 0.4444 | 0.9833 | 0.9333 |
 | Hybrid RRF top-3 | 3 | 0.9833 | 0.4556 | 1.0000 | 0.9667 |
 
-Recall เพิ่ม **18.33 percentage points** จาก baseline เพราะดึงได้หลาย source มากขึ้น ต้นทุนคือ precision ลดและบริบทมากขึ้น ไม่สรุปว่า hybrid ดีกว่าเมื่อเทียบที่ k เท่ากัน MRR=1 บนชุดนี้เพราะ relevant แรกอยู่บนสุดทุกข้อ ไม่ได้แปลว่าครบทุกข้อมูล
+เลือก vector top-3 เพราะ recall เพิ่มจาก top-1 ประมาณ 18.33 percentage points แต่การเปรียบเทียบนี้เปลี่ยนจำนวน context ด้วย ต้องไม่อ้างว่าผลดีขึ้นทั้งหมดมาจาก hybrid เมื่อเทียบที่ k=3 เท่ากัน hybrid เสมอกับ vector จึงยังไม่เลือกเป็น default
 
-`results/retrieval.json` มี per-query rankings, group metrics, failures และ SHA-256 ของ corpus/test/code ผลนี้วัด retrieval เท่านั้น **ไม่ใช่ความแม่นยำหรือ faithfulness ของคำตอบ LLM** ยังไม่ได้เรียก proxy ในการวัดตัวเลขนี้
+ชุดคำถามมี 18 single-source และ 12 multi-source สร้างควบคู่กับ corpus โดยใช้ AI ช่วย ยังไม่มี independent labels และมีความเสี่ยงจากคำที่ตรงกันมากเกินไป ผลนี้เป็น retrieval metrics ไม่ใช่คะแนนคำตอบ LLM ผลรายข้อและ hashes อยู่ใน `results/retrieval.json`
 
-ชุดทดสอบมี 30 คำถาม: 18 single-source + 12 multi-source พร้อมชุด dev แยก 6 ข้อ และ negative/manual scenarios แยก 6 ข้อ Labels สร้างร่วมกับ corpus โดยผู้พัฒนาและ AI ไม่ใช่ independent human gold มีความเสี่ยงจาก lexical overlap และ benchmark ขนาดเล็ก จึงต้องสร้าง fresh held-out set โดยผู้ตรวจอีกคนก่อนอ้าง generalization
+Failure ที่เก็บไว้: t27 ค้นเรื่องอบรมได้ แต่หลุดเงินประกันกล้องไปเป็นเงินประกันประเภทอื่น อีกคำถามนอกชุดคือ “ยืมได้กี่วัน” ซึ่ง retriever ตรง ๆ อาจไม่คืน duration ใน top-3 ถึงแม้การถามเจาะจงว่า “ระยะเวลายืมปกติ” จะค้นเจอ
 
-Failure ใน benchmark: `t27` ต้องการ camera deposit + training แต่ top-3 เป็น training + lighting deposit + audio deposit ค้นครบเพียงหนึ่งในสอง source อีก failure นอกชุดคือคำถามสั้น `ยืมได้กี่วัน` ซึ่งค้น duration ไม่ติด top-3
+## เอกสารและการส่งงาน
 
-## Guardrails
+- **ฉบับหลักภาษาไทย แก้ไขต่อได้:** [`docs/report-th.docx`](docs/report-th.docx)
+- **ข้อความสำหรับคัดลอกไป Google Docs:** [`docs/report-th.md`](docs/report-th.md)
+- **PDF ภาษาอังกฤษฉบับเดิม:** [`docs/report.pdf`](docs/report.pdf) เป็นร่างก่อนยืนยัน proxy จริง ใช้อ่านประกอบ ไม่ใช่สถานะล่าสุด
+- คู่มืออธิบายโค้ด [`docs/walkthrough-th.md`](docs/walkthrough-th.md)
+- Proposal [`docs/proposal.md`](docs/proposal.md)
+- บทเดโมทางเลือก [`docs/demo-script-th.md`](docs/demo-script-th.md)
+- สถานะก่อนส่ง [`docs/submission-checklist.md`](docs/submission-checklist.md)
 
-- Allow-list เพียง `search_docs` และ `query_inventory`; Pydantic ตรวจชนิด/ช่วง/extra fields
-- SQL เป็น template ที่โค้ดควบคุม ใช้ `?` bound parameters, `PRAGMA query_only=ON`, limit 30 rows; ไม่มี raw SQL endpoint
-- Native assistant message ถูกเก็บก่อน tool result และตอบทุก `tool_call_id` รวม parallel calls
-- หยุดเมื่อไม่มี tool call หรือครบ 5 model turns / 8 tool calls; block repeated calls
-- Tool results/history เป็น untrusted data และไม่ให้สิทธิ์ write tools; prompt delimiter เป็นเพียงชั้นเสริม
-- Final JSON ถูก validate และอ้างได้เฉพาะ source IDs ที่ tool คืนจริง การตรวจนี้กัน citation ปลอม แต่ไม่ได้รับประกัน faithfulness
-- จำกัด input/history, 2 concurrent chat requests, timeout ต่อ proxy request และไม่ echo exception ที่อาจมีข้อมูลลับ
-- UI ใช้ `textContent` แสดงคำตอบ/เอกสาร ไม่รัน HTML จากโมเดล
+โจทย์ระบุว่าใช้ **“AI tools freely”** ได้ แต่ต้องมีข้อมูลและชุดประเมินของตนเอง และอธิบาย design choice กับตัวเลขได้ รายงานนี้ระบุการใช้ AI ตามจริง ผู้ส่งควรตรวจ labels และปรับคำอธิบายให้ตรงความเข้าใจ ไม่เปลี่ยนผลทดลองให้ดูดีกว่าที่รันได้
 
-## เอกสารส่งงาน
-
-- Proposal: `docs/proposal.md`
-- รายงาน PDF 6 หน้า: `docs/report.pdf` และสคริปต์ `scripts/build_report.py`
-- อธิบายงานภาษาไทย: `docs/walkthrough-th.md`
-- บทเดโม 3–6 นาที: `docs/demo-script-th.md`
-- ขั้นตอนก่อนส่ง: `docs/submission-checklist.md`
-
-**ยังไม่ควรส่งเป็นงานเสร็จสมบูรณ์:** ต้องทดสอบ class proxy จริง, ตรวจคำตอบด้วยคน และอัด demo 3–6 นาทีที่ใช้โมเดลจริงพร้อม success/failure case รายงานตอนนี้บอกข้อจำกัดเหล่านี้ตรง ๆ ให้ regenerate หลังได้ผลจริง
+Q1 ส่ง public GitHub repo, Q2 ส่งรายงาน PDF 4–8 หน้าโดย export จากฉบับที่ตรวจแล้ว, Q3 เลือก **เว็บที่ deploy และทำงานจริง หรือคลิป 3–6 นาที** อย่างใดอย่างหนึ่ง ยังต้องเตรียมอธิบายกรณีสำเร็จและข้อจำกัดสำหรับการ demo กับผู้สอน
 
 ## แหล่งอ้างอิง
 
-- แนวคิดจาก Lectures 8–14 ของรายวิชา: metrics, tool round-trip, bounded agent loop, SQL guardrails
-- [OpenAI function calling documentation](https://developers.openai.com/api/docs/guides/function-calling) สำหรับการต่อ native calls, arguments และ `tool_call_id`
-- โค้ดและ corpus เขียนใหม่สำหรับโปรเจกต์นี้ด้วย AI assistance ไม่ได้ fork หรือคัดลอก reference app; ผู้ส่งต้องอ่านและอธิบายได้ก่อน demo
+- Lectures 8–14 ของรายวิชา สำหรับ metrics, RRF, tool round-trip และ SQL guardrails
+- [OpenAI function calling](https://developers.openai.com/api/docs/guides/function-calling)
+- [Render FastAPI deployment](https://render.com/docs/deploy-fastapi) และ [ข้อจำกัด Free service](https://render.com/docs/free)
+
+โค้ดและ corpus สร้างใหม่ด้วย AI assistance ไม่ได้ fork หรือเปลี่ยนหน้าตา reference app มาเป็นงานของตนเอง

@@ -30,7 +30,7 @@
 
 ## 8. แยกสิ่งที่ทำแล้วกับสิ่งที่รอ
 
-รันแอป, offline retrieval, SQL และ protocol tests แล้ว แต่ยังไม่อ้างว่า real class proxy ผ่าน จนกว่าจะมี credentials และทดสอบจริง โหมด demo เป็นกฎในโค้ด ไม่ใช่โมเดลจำลองที่นำไปนับเป็น eval LLM
+รันแอป, retrieval, SQL และ protocol tests แล้ว และทดสอบ class proxy จริงด้วย gemma-4-E4B-it สำเร็จ 3 สถานการณ์เมื่อ 25 ตุลาคม 2569 ผลอยู่ใน results/live-smoke.json สิ่งที่ยังต้องตรวจเพิ่มคือคำตอบรายข้อโดยคนและคำถามจากผู้ใช้อิสระ โหมด demo ยังคงเป็นกฎในโค้ดและไม่ถูกนำไปอ้างเป็นผลของ LLM
 
 ## ไฟล์ที่ควรเปิดอ่านก่อนอธิบาย
 
@@ -47,3 +47,7 @@
 - TF-IDF เป็น semantic embedding ไหม? ไม่ใช่ เป็น sparse lexical representation จึงพลาดคำที่ใช้คำต่างกันมากได้
 - อะไรพิสูจน์ความปลอดภัย SQL? SQL มาจาก template, values bind เป็น parameters และ connection เป็น query-only; ไม่ใช่เชื่อ prompt อย่างเดียว
 - Citation ตรวจอะไรได้? ตรวจว่ามีแหล่งนั้นจริงในผล tool แต่ต้องใช้คนตรวจว่าประโยคอ้างได้ตรงหลักฐานหรือไม่
+
+## 9. ส่งเว็บแทนคลิปได้หรือไม่
+
+โจทย์ให้เลือกคลิป 3-6 นาทีหรือ deployed working app URL อย่างใดอย่างหนึ่งได้ แต่ยังต้องอธิบายกรณีสำเร็จและ failure ในการ demo กับผู้สอน ไฟล์ deploy อยู่ใน render.yaml อ่านขั้นตอนได้ใน docs/deploy-th.md ต้องยืนยัน URL จริงก่อนใส่ README ไม่ใช้ localhost เป็น live link

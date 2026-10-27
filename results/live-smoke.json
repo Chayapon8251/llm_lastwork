@@ -1,0 +1,72 @@
+{
+  "tested_on": "2026-10-25",
+  "kind": "real class-proxy integration smoke test",
+  "review": "AI-assisted observational review; not an independent human quality evaluation",
+  "cases": [
+    {
+      "question": "สวัสดีครับ",
+      "answer": "สวัสดีครับ มีอะไรให้ GearMate ช่วยเหลือไหมครับ?",
+      "mode": "live",
+      "model": "gemma-4-E4B-it",
+      "source_ids": [],
+      "supported": false,
+      "elapsed_ms": 2930.8,
+      "stop_reason": "final_answer",
+      "tools": []
+    },
+    {
+      "question": "กล้องว่างกี่ตัว และต้องวางเงินประกันเท่าไร",
+      "answer": "มีกล้องว่างอยู่ 2 ตัว และกล้องรหัส CAM-A6400 กับ CAM-R50 ต้องวางเงินประกัน 300 บาทต่อรายการ",
+      "mode": "live",
+      "model": "gemma-4-E4B-it",
+      "source_ids": [
+        "inventory",
+        "camera_deposit"
+      ],
+      "supported": true,
+      "elapsed_ms": 2036.3,
+      "stop_reason": "final_answer",
+      "tools": [
+        {
+          "name": "query_inventory",
+          "args": {
+            "category": "camera",
+            "status": "available"
+          },
+          "validation_error": false
+        },
+        {
+          "name": "search_docs",
+          "args": {
+            "query": "เงินประกันการยืมอุปกรณ์"
+          },
+          "validation_error": false
+        }
+      ]
+    },
+    {
+      "question": "มีโดรนให้ยืมไหม",
+      "answer": "ไม่พบข้อมูลเกี่ยวกับโดรนในหมวดหมู่อุปกรณ์ที่รองรับครับ",
+      "mode": "live",
+      "model": "gemma-4-E4B-it",
+      "source_ids": [],
+      "supported": false,
+      "elapsed_ms": 1173.8,
+      "stop_reason": "final_answer",
+      "tools": [
+        {
+          "name": "query_inventory",
+          "args": {
+            "category": "drone"
+          },
+          "validation_error": true
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Three scenarios only; no general accuracy or faithfulness claim",
+    "Single-run elapsed times, not latency averages",
+    "Unsupported category is a validation rejection, not a zero-stock query result"
+  ]
+}

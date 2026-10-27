@@ -7,11 +7,15 @@
 - [x] เก็บ failure และไม่อ้างว่า hybrid ช่วยเมื่อผลเสมอ
 - [x] มีรายงาน draft และบทเดโม
 - [ ] ผู้ส่งตรวจ corpus/labels ให้สอดคล้องกับปัญหาที่สนใจจริง
-- [ ] ใส่ class proxy credentials ในเครื่อง ไม่ลง Git
-- [ ] รัน `python -m scripts.smoke_live` และอ่านผลทุกข้อด้วยตนเอง
-- [ ] เพิ่มผล real LLM และข้อผิดพลาดลงรายงาน แล้ว regenerate PDF
+- [x] ใส่ class proxy credentials ในเครื่องโดยไม่ลง Git
+- [x] รัน real class-proxy smoke test 3 สถานการณ์แล้ว เก็บผลที่ไม่มี credentials
+- [ ] ผู้ส่งอ่านและตรวจผล smoke test ด้วยตนเอง
+- [x] เพิ่มผล real LLM และข้อจำกัดในรายงานภาษาไทย DOCX/Markdown
+- [ ] ตรวจการจัดหน้าและ export PDF ฉบับภาษาไทยก่อนส่ง Q2
 - [ ] อ่านโค้ดและอธิบาย design choice + evaluation number ได้
-- [ ] อัดเดโมจริง 3–6 นาทีพร้อม success/failure case
+- [x] เตรียม Blueprint สำหรับโฮสต์ Python เดิมบน Render
+- [ ] Deploy แล้วตรวจ URL จริง หรือเลือกอัดคลิป 3–6 นาทีเป็นทางเลือก
+- [ ] เตรียมอธิบาย success/failure case สำหรับการ demo กับผู้สอน
 - [ ] ตรวจ public repo และใส่ URL ใน Q1, ส่ง PDF Q2, ส่ง demo URL Q3
 
 รายงานปัจจุบันเป็น progress report ที่ซื่อสัตย์ต่อสิ่งที่รันจริง ไม่ใช่การรับรองว่าส่งครบ capstone แล้ว

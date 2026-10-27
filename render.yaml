@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: gearmate
+    runtime: python
+    plan: free
+    region: singapore
+    branch: main
+    buildCommand: pip install -r requirements.lock.txt && python -m scripts.evaluate
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --workers 1 --proxy-headers
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.11
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_BASE_URL
+        value: https://llm.nat-d.uk/v1
+      - key: OPENAI_MODEL
+        value: gemma-4-E4B-it
+      - key: GEARMATE_MODE
+        value: live
+      - key: GEARMATE_MAX_STEPS
+        value: '5'
+      - key: GEARMATE_PUBLIC_DEMO
+        value: 'true'
